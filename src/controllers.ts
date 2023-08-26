@@ -2,14 +2,9 @@ import type { RequestHandler } from "express";
 
 import { createApi } from "unsplash-js";
 import nodeFetch from "node-fetch";
+import { DUMMY_RESULT } from "./constants";
 
 const accessKey = process.env.ACCESS_KEY;
-
-const dummyResult = {
-  result: {
-    response: [],
-  },
-};
 
 const unsplash = createApi({
   accessKey: accessKey as string,
@@ -29,7 +24,7 @@ export const randomImg: RequestHandler = (req, res) => {
         // TODO: handle error – sentry?
         console.error("error occurred: ", result.errors[0]);
 
-        res.send(dummyResult);
+        res.send(DUMMY_RESULT);
       } else {
         res.send(result);
       }
@@ -38,6 +33,6 @@ export const randomImg: RequestHandler = (req, res) => {
       // TODO: handle error – sentry?
       console.error(error);
 
-      res.send(dummyResult);
+      res.send(DUMMY_RESULT);
     });
 };
