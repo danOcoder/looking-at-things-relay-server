@@ -12,16 +12,18 @@ const unsplash = createApi({
   //...other fetch options
 });
 
-export const randomImg: RequestHandler = (req, res) => {
-  const { count } = req.query;
+export const random: RequestHandler = (req, res) => {
+  const { count, query } = req.query;
 
   unsplash.photos
     .getRandom({
       count: Number(count),
+      orientation: "squarish",
+      query: query as string,
     })
     .then((result) => {
       if (result.type === "error") {
-        // TODO: handle error – sentry?
+        // TODO: handle error – Sentry?
         console.error("error occurred: ", result.errors[0]);
 
         res.send(DUMMY_RESULT);
@@ -30,7 +32,7 @@ export const randomImg: RequestHandler = (req, res) => {
       }
     })
     .catch((error) => {
-      // TODO: handle error – sentry?
+      // TODO: handle error – Sentry?
       console.error(error);
 
       res.send(DUMMY_RESULT);
