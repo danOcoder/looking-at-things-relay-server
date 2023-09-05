@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { randomImg } from "./controllers";
+import { random } from "./controllers";
 
 const router = Router();
 
-router.get("/random", randomImg);
+router.get("/random", random);
 
 export default router;
