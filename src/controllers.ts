@@ -33,7 +33,7 @@ export const random: RequestHandler = (req, res) => {
     })
     .catch((error) => {
       // TODO: handle error – Sentry?
-      console.error(error);
+      console.error("error occurred in catch: ", error);
 
       res.send(DUMMY_RESULT);
     });
