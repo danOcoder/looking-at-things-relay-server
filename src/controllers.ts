@@ -18,7 +18,6 @@ export const random: RequestHandler = (req, res) => {
   unsplash.photos
     .getRandom({
       count: Number(count),
-      orientation: "squarish",
       query: query as string,
     })
     .then((result) => {
